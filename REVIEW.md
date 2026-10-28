@@ -62,4 +62,12 @@ The original ZIP has SHA-256
 
 ## Pending
 
-- Course submission, acceptance, and debrief.
+- The first course submission accepted both tickets, but did not mark the challenge solved.
+- The challenge page then exposed an engineering update: source desk #4471 closed 2026-10-05;
+  parser fixed (`fix(dates): parse dd/mm for eu locales`); hint won't fix (`booking-v3 form retired`).
+- The local signed page records that update through `DeskResolution.svelte` and
+  `src/lib/data/incident-4471-status.json`, separately from the unchanged original export.
+- The student approved the remaining KB pushes and issue updates, including publishing the
+  resolution update, posting the prepared comments, closing parser issue 1 as completed,
+  and closing hint issue 2 as not planned.
+- Resubmit the repository to the course after those updates, then complete the debrief.

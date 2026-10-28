@@ -10,5 +10,6 @@
   "newReportCounts": "pass",
   "futureTimeline": "pass",
   "newTenantDiscovery": "pass",
-  "signatureDerivation": "pass"
+  "signatureDerivation": "pass",
+  "deskResolution": "pass"
 }

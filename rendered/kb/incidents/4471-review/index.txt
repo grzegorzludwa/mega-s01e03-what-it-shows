@@ -2,16 +2,20 @@ support desk · kb
 #4471 review · separate parser and booking-hint failures
 
 owner Grzegorz Ludwa and Codex harness
-reviewed
+resolved
 reviewed 2026-10-28 · 0 days ago
 
-Reports merged into #4471 cover distinct parser and booking-hint failures. Keep a ticket for each cause: fixing the shared parser does not correct the booking form’s misleading hint. This review replaces the one issue, one fix conclusion in the original incident account; that account remains as the historical record.
+Reports merged into #4471 cover distinct parser and booking-hint failures. This review keeps their evidence separate and records the source desk’s later engineering outcomes. It replaces the one issue, one fix conclusion in the original incident account; that account remains as the historical record.
 
-Public follow-up tickets
-Parser failure · follow-up issue 1
-Booking-hint failure · follow-up issue 2
+Source desk resolution
 
-These issue numbers belong to the public follow-up repository. The table below shows the source desk’s routing in the supplied export, including reports it had not given their own ticket.
+Source desk: #4471 closed on 2026-10-05. Engineering update on the challenge page.
+
+cause	desk outcome	engineering update	follow-up ticket
+parser	fixed	fix(dates): parse dd/mm for eu locales	parser follow-up
+hint	won't fix	booking-v3 form retired	hint follow-up
+
+The follow-up tickets preserve the findings from the earlier export. The cause table below shows routing in that export, before the engineering update. Its missing-ticket warning is historical; use the resolution table for current outcomes.
 
 What the running views show
 
@@ -23,7 +27,7 @@ hint	33	hint ×18 · parser ×15	3	2026-04-17 → 2026-09-22	not this ticket —
 
 5 reports read as a one-day move; filed under parser by tenant.
 
-These counts come from the current report data at render time. The component first removes overlapping export rows by report ID, then groups reports by causeOf using the tenant’s directory entry. It does not group by subject, browser locale, or meta.intakeTag. The original ticket belongs to the largest cause group; the other cause needs its own ticket. The public tickets record counts for the supplied export, not a promise that future counts stay fixed.
+These counts come from the current report data at render time. The component first removes overlapping export rows by report ID, then groups reports by causeOf using the tenant’s directory entry. It does not group by subject, browser locale, or meta.intakeTag. The original source-desk ticket belonged to the largest cause group; the other cause had been merged incorrectly. The public tickets record counts for the supplied export, not a promise that future counts stay fixed.
 
 Parser
 
@@ -31,7 +35,7 @@ The shared parser reads month first, although the affected tenants write day fir
 
 Booking hint
 
-For a day-first tenant using booking-v3, a form-channel report belongs to hint: the field prints MM/DD/YYYY, but the form reads the date in the tenant’s day-first order. People following the displayed hint can therefore submit a different date from the one intended. For example, R-41241 is an Alder Physio form report (de-DE, booking-v3), while an app report from the same tenant still belongs to parser. Make the hint agree with the form’s interpretation and verify a date entered exactly as instructed. Do not close this ticket merely because the shared parser is fixed.
+For a day-first tenant using booking-v3, a form-channel report belongs to hint: the field prints MM/DD/YYYY, but the form reads the date in the tenant’s day-first order. People following the displayed hint can therefore submit a different date from the one intended. For example, R-41241 is an Alder Physio form report (de-DE, booking-v3), while an app report from the same tenant still belongs to parser. If this form returns, make its hint agree with its interpretation and verify a date entered exactly as instructed. A parser fix alone would not correct the misleading hint; the source desk’s disposition of this cause is recorded separately above.
 
 Some reports describe a one-day move. The desk's exception list is footnoted in the live cause table and stays inside its assigned group. Those descriptions deserve follow-up; they do not establish another cause or justify counting a report twice.
 The desk kept receiving reports
@@ -44,7 +48,7 @@ The desk kept receiving reports
 09-14
  received ·  merged into #4471 · per week
 
-Received dates and merge dates answer different questions. The large merge batch is not the start of the incident. Reports continue after that batch: a known ticket and a queued fix are not evidence that the problem stopped. Keep the receipt and merge timelines separate.
+Received dates and merge dates answer different questions. The large merge batch is not the start of the incident. Reports continue after that batch: a known ticket and a queued fix were not evidence that the problem stopped. Keep the receipt and merge timelines separate, and use the later engineering update when recording the disposition.
 
 How to handle the next report
 Find the tenant’s locale and booking-form version in the directory. Browser locale is an intake hint.
@@ -57,7 +61,7 @@ The prose in the old triage guide follows accepted decision 0001, while its expl
 
 Provenance and limits
 
-Source: the support kb export dated 2026-10-04, including reports-4471.json, the tenant directory, desk-notes.json, and the executable views in src/lib/kb/. The classifications are the supplied desk rules, not an independently confirmed diagnosis of a running production system. Preserve the original data and re-render after updates. Use the repository’s evidence/report-groups.json for the report IDs and drafts/ for the corresponding ticket text.
+Source: the support kb export dated 2026-10-04, including reports-4471.json, the tenant directory, desk-notes.json, and the executable views in src/lib/kb/. The later engineering update comes from the challenge page and is retained in src/lib/data/incident-4471-status.json; it does not rewrite the original export. The classifications are the supplied desk rules, not an independently confirmed diagnosis of a running production system. Preserve the original data and re-render after updates. Use the repository’s evidence/report-groups.json for the report IDs and drafts/ for the corresponding ticket text.
 
 desk ref DR-BCHR-MV8H
 

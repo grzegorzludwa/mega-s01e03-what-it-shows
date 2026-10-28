@@ -28,6 +28,8 @@ assert.deepEqual(Object.fromEntries(tableCounts(baseline)),counts);
 assert.ok(baseline.includes(deskRef(signature)));
 assert.ok(readFileSync(join(root,'rendered/kb/index.html'),'utf8').includes('/kb/incidents/4471-review'));
 assert.ok(baseline.includes('<style'));
+assert.ok(baseline.includes('fix(dates): parse dd/mm for eu locales'));
+assert.ok(baseline.includes('booking-v3 form retired'));
 
 const temp = mkdtempSync(join(tmpdir(),'mega-s01e03-verify-'));
 try {
@@ -58,7 +60,12 @@ try {
   const changedSignature = render();
   assert.ok(changedSignature.includes(deskRef(nextSignature)));
   assert.ok(!changedSignature.includes(deskRef(signature)));
-  const result = {partition:'pass',baselineCounts:counts,indexReachability:'pass',styles:'pass',duplicateRows:'pass',newReportCounts:'pass',futureTimeline:'pass',newTenantDiscovery:'pass',signatureDerivation:'pass'};
+  const deskStatusPath = join(temp,'src/lib/data/incident-4471-status.json');
+  const deskStatus = JSON.parse(readFileSync(deskStatusPath,'utf8'));
+  deskStatus.updates[0].outcome = 'verification-reopened';
+  writeFileSync(deskStatusPath,JSON.stringify(deskStatus));
+  assert.ok(render().includes('verification-reopened'));
+  const result = {partition:'pass',baselineCounts:counts,indexReachability:'pass',styles:'pass',duplicateRows:'pass',newReportCounts:'pass',futureTimeline:'pass',newTenantDiscovery:'pass',signatureDerivation:'pass',deskResolution:'pass'};
   mkdirSync(join(root,'evidence'),{recursive:true});
   writeFileSync(join(root,'evidence/verification.json'),JSON.stringify(result,null,2)+'\n');
   console.log(JSON.stringify(result,null,2));
