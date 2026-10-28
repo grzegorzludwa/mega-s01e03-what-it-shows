@@ -1,0 +1,25 @@
+{
+  "title": "#4471 review · separate parser and booking-hint failures · support kb",
+  "text": "support desk · kb\n#4471 review · separate parser and booking-hint failures\n\nowner Grzegorz Ludwa and Codex harness\nreviewed\nreviewed 2026-10-28 · 0 days ago\n\nReports merged into #4471 cover distinct parser and booking-hint failures. Keep a ticket for each cause: fixing the shared parser does not correct the booking form’s misleading hint. This review replaces the one issue, one fix conclusion in the original incident account; that account remains as the historical record.\n\nWhat the running views show\n\n412 reports merged into #4471 · 2 causes\n\ncause\treports\ttagged as\ttenants\tseen\t\nparser\t379\tparser ×356 · hint ×23\t11\t2026-04-01 → 2026-10-04\t#4471\nhint\t33\thint ×18 · parser ×15\t3\t2026-04-17 → 2026-09-22\tnot this ticket — no ticket of its own\n\n5 reports read as a one-day move; filed under parser by tenant.\n\nThese counts come from the current report data at render time. The component first removes overlapping export rows by report ID, then groups reports by causeOf using the tenant’s directory entry. It does not group by subject, browser locale, or meta.intakeTag. The original ticket belongs to the largest cause group; the other cause needs its own ticket. The public tickets record counts for the supplied export, not a promise that future counts stay fixed.\n\nParser\n\nThe shared parser reads month first, although the affected tenants write day first. App and email reports belong here, as do form reports whose tenant uses booking-v2. For example, R-41200 reports 7 April becoming 4 July for Harbour Dental (en-GB). The expected behavior is to interpret the date using the tenant’s date convention. Check the shared parser with an unambiguous day above twelve and an ambiguous day/month pair; no product runtime was supplied, so these are verification scenarios rather than executed product tests.\n\nBooking hint\n\nFor a day-first tenant using booking-v3, a form-channel report belongs to hint: the field prints MM/DD/YYYY, but the form reads the date in the tenant’s day-first order. People following the displayed hint can therefore submit a different date from the one intended. For example, R-41241 is an Alder Physio form report (de-DE, booking-v3), while an app report from the same tenant still belongs to parser. Make the hint agree with the form’s interpretation and verify a date entered exactly as instructed. Do not close this ticket merely because the shared parser is fixed.\n\nSome reports describe a one-day move. The desk's exception list is footnoted in the live cause table and stays inside its assigned group. Those descriptions deserve follow-up; they do not establish another cause or justify counting a report twice.\nThe desk kept receiving reports\n03-30\n04-27\n05-25\n06-22\n07-20\n08-17\n09-14\n received ·  merged into #4471 · per week\n\nReceived dates and merge dates answer different questions. The large merge batch is not the start of the incident. Reports continue after that batch: a known ticket and a queued fix are not evidence that the problem stopped. Keep the receipt and merge timelines separate.\n\nHow to handle the next report\nFind the tenant’s locale and booking-form version in the directory. Browser locale is an intake hint.\nApply causeOf from src/lib/kb/causes.ts using the report channel and that tenant entry.\nMerge only when sameCause confirms the same non-null cause. Matching subjects are insufficient; different subjects can still describe the same cause.\nIf the tenant is missing or the cause is null, leave the report unplaced for investigation.\nDeduplicate export overlaps by ID before counting, and retain the report IDs behind each ticket.\n\nThe prose in the old triage guide follows accepted decision 0001, while its explorer runs the cause rules. Their disagreement matters: the decision and triage text were last reviewed in 2024. Preserve the accepted decision; the desk should supersede it with a new decision before treating the revised general policy as accepted. This review provides the incident-specific rule.\n\nProvenance and limits\n\nSource: the support kb export dated 2026-10-04, including reports-4471.json, the tenant directory, desk-notes.json, and the executable views in src/lib/kb/. The classifications are the supplied desk rules, not an independently confirmed diagnosis of a running production system. Preserve the original data and re-render after updates. Use the repository’s evidence/report-groups.json for the report IDs and drafts/ for the corresponding ticket text.\n\ndesk ref DR-BCHR-MV8H\n\nPages are written by people. Tables and charts are built from data at render time.",
+  "rows": [
+    [
+      "parser",
+      "379",
+      "parser ×356 · hint ×23",
+      "11",
+      "2026-04-01 → 2026-10-04",
+      "#4471"
+    ],
+    [
+      "hint",
+      "33",
+      "hint ×18 · parser ×15",
+      "3",
+      "2026-04-17 → 2026-09-22",
+      "not this ticket — no ticket of its own"
+    ]
+  ],
+  "stamp": "desk ref DR-BCHR-MV8H",
+  "brokenImages": 0,
+  "overflow": false
+}

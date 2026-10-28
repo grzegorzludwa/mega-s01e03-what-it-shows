@@ -1,0 +1,39 @@
+[
+  {
+    "source": "src/routes/kb/+page.svx",
+    "html": "rendered/kb/index.html",
+    "title": "Support knowledge base",
+    "signature": null,
+    "deskRefs": []
+  },
+  {
+    "source": "src/routes/kb/decisions/0001-dedupe-by-subject/+page.svx",
+    "html": "rendered/kb/decisions/0001-dedupe-by-subject/index.html",
+    "title": "0001 · Duplicates share a subject line",
+    "signature": null,
+    "deskRefs": []
+  },
+  {
+    "source": "src/routes/kb/incidents/4471-review/+page.svx",
+    "html": "rendered/kb/incidents/4471-review/index.html",
+    "title": "#4471 review · separate parser and booking-hint failures",
+    "signature": "grzegorzludwa / Codex / S01E03",
+    "deskRefs": [
+      "DR-BCHR-MV8H"
+    ]
+  },
+  {
+    "source": "src/routes/kb/incidents/4471/+page.svx",
+    "html": "rendered/kb/incidents/4471/index.html",
+    "title": "#4471 · dates parse mm/dd in eu locales",
+    "signature": null,
+    "deskRefs": []
+  },
+  {
+    "source": "src/routes/kb/triage/dedupe/+page.svx",
+    "html": "rendered/kb/triage/dedupe/index.html",
+    "title": "Triage: duplicate reports",
+    "signature": null,
+    "deskRefs": []
+  }
+]

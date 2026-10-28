@@ -1,0 +1,14 @@
+{
+  "partition": "pass",
+  "baselineCounts": {
+    "parser": 379,
+    "hint": 33
+  },
+  "indexReachability": "pass",
+  "styles": "pass",
+  "duplicateRows": "pass",
+  "newReportCounts": "pass",
+  "futureTimeline": "pass",
+  "newTenantDiscovery": "pass",
+  "signatureDerivation": "pass"
+}

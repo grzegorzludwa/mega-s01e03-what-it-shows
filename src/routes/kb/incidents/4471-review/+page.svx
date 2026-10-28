@@ -1,0 +1,89 @@
+---
+layout: runbook
+title: '#4471 review · separate parser and booking-hint failures'
+owner: Grzegorz Ludwa and Codex harness
+status: reviewed
+reviewed: '2026-10-28T23:05:48Z'
+signature: grzegorzludwa / Codex / S01E03
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import CurrentQueueTimeline from '#lib/kb/CurrentQueueTimeline.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+Reports merged into #4471 cover distinct parser and booking-hint failures. Keep a ticket for
+each cause: fixing the shared parser does not correct the booking form's misleading hint.
+This review replaces the **one issue, one fix** conclusion in the
+[original incident account](/kb/incidents/4471); that account remains as the historical record.
+
+## What the running views show
+
+<CauseTable ticket={4471} />
+
+These counts come from the current report data at render time. The component first removes
+overlapping export rows by report ID, then groups reports by `causeOf` using the tenant's
+directory entry. It does not group by subject, browser locale, or `meta.intakeTag`.
+The original ticket belongs to the largest cause group; the other cause needs its own ticket.
+The public tickets record counts for the supplied export, not a promise that future counts stay fixed.
+
+### Parser
+
+The shared parser reads month first, although the affected tenants write day first.
+App and email reports belong here, as do form reports whose tenant uses `booking-v2`.
+For example, `R-41200` reports 7 April becoming 4 July for Harbour Dental (`en-GB`).
+The expected behavior is to interpret the date using the tenant's date convention.
+Check the shared parser with an unambiguous day above twelve and an ambiguous day/month pair;
+no product runtime was supplied, so these are verification scenarios rather than executed product tests.
+
+### Booking hint
+
+For a day-first tenant using `booking-v3`, a **form-channel** report belongs to `hint`:
+the field prints `MM/DD/YYYY`, but the form reads the date in the tenant's day-first order.
+People following the displayed hint can therefore submit a different date from the one intended.
+For example, `R-41241` is an Alder Physio form report (`de-DE`, `booking-v3`), while an app
+report from the same tenant still belongs to `parser`.
+Make the hint agree with the form's interpretation and verify a date entered exactly as instructed.
+Do not close this ticket merely because the shared parser is fixed.
+
+<Callout kind="warn">
+  Some reports describe a one-day move. The desk's exception list is footnoted in the live
+  cause table and stays inside its assigned group. Those descriptions deserve follow-up;
+  they do not establish another cause or justify counting a report twice.
+</Callout>
+
+## The desk kept receiving reports
+
+<CurrentQueueTimeline ticket={4471} />
+
+Received dates and merge dates answer different questions. The large merge batch is not the
+start of the incident. Reports continue after that batch: a known ticket and a queued fix
+are not evidence that the problem stopped. Keep the receipt and merge timelines separate.
+
+## How to handle the next report
+
+1. Find the tenant's locale and booking-form version in the directory. Browser locale is an intake hint.
+2. Apply `causeOf` from `src/lib/kb/causes.ts` using the report channel and that tenant entry.
+3. Merge only when `sameCause` confirms the same non-null cause. Matching subjects are insufficient;
+   different subjects can still describe the same cause.
+4. If the tenant is missing or the cause is null, leave the report unplaced for investigation.
+5. Deduplicate export overlaps by ID before counting, and retain the report IDs behind each ticket.
+
+The prose in [the old triage guide](/kb/triage/dedupe) follows
+[accepted decision 0001](/kb/decisions/0001-dedupe-by-subject), while its explorer runs the
+cause rules. Their disagreement matters: the decision and triage text were last reviewed
+in 2024. Preserve the accepted decision; the desk should supersede it with a new decision
+before treating the revised general policy as accepted. This review provides the incident-specific rule.
+
+## Provenance and limits
+
+Source: the support kb export dated 2026-10-04, including `reports-4471.json`, the tenant
+directory, `desk-notes.json`, and the executable views in `src/lib/kb/`.
+The classifications are the supplied desk rules, not an independently confirmed diagnosis
+of a running production system. Preserve the original data and re-render after updates.
+Use the repository's `evidence/report-groups.json` for the report IDs and
+`drafts/` for the corresponding ticket text.
+
+<RenderStamp {signature} />
