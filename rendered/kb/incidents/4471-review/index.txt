@@ -7,6 +7,12 @@ reviewed 2026-10-28 · 0 days ago
 
 Reports merged into #4471 cover distinct parser and booking-hint failures. Keep a ticket for each cause: fixing the shared parser does not correct the booking form’s misleading hint. This review replaces the one issue, one fix conclusion in the original incident account; that account remains as the historical record.
 
+Public follow-up tickets
+Parser failure · follow-up issue 1
+Booking-hint failure · follow-up issue 2
+
+These issue numbers belong to the public follow-up repository. The table below shows the source desk’s routing in the supplied export, including reports it had not given their own ticket.
+
 What the running views show
 
 412 reports merged into #4471 · 2 causes

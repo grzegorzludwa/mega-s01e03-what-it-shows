@@ -52,9 +52,14 @@ and [browser observations](evidence/browser-review.json).
 The original ZIP has SHA-256
 `267efc5ea61aca6efaaca842160ac4d0377d56bcbf5123e61c604d6ae99597f2`.
 
-## Pending
+## Published
 
 - The student approved creating `grzegorzludwa/mega-s01e03-what-it-shows` as a public GitHub
   repository, pushing the kb source, rendered pages, and evidence, and creating the drafted issues.
-- Publish the approved repository and issues.
+- Repository: [mega-s01e03-what-it-shows](https://github.com/grzegorzludwa/mega-s01e03-what-it-shows).
+- [Parser issue 1](https://github.com/grzegorzludwa/mega-s01e03-what-it-shows/issues/1): 379 reports.
+- [Booking-hint issue 2](https://github.com/grzegorzludwa/mega-s01e03-what-it-shows/issues/2): 33 reports.
+
+## Pending
+
 - Course submission, acceptance, and debrief.
