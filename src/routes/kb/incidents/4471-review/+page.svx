@@ -4,7 +4,7 @@ title: '#4471 review · separate parser and booking-hint failures'
 owner: Grzegorz Ludwa and Codex harness
 status: resolved
 reviewed: '2026-10-28T23:05:48Z'
-signature: grzegorzludwa / Codex / S01E03
+signature: "v1.eyJzdWIiOiIxNjg5IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyMjk3MjksImV4cCI6MTc5MzMxNjEyOX0.5yGZK9PGeNzLBWijAhQj82MC1WofAUcqkJL_UEBVmp4"
 ---
 
 <script>

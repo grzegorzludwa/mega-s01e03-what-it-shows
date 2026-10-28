@@ -63,6 +63,6 @@ Provenance and limits
 
 Source: the support kb export dated 2026-10-04, including reports-4471.json, the tenant directory, desk-notes.json, and the executable views in src/lib/kb/. The later engineering update comes from the challenge page and is retained in src/lib/data/incident-4471-status.json; it does not rewrite the original export. The classifications are the supplied desk rules, not an independently confirmed diagnosis of a running production system. Preserve the original data and re-render after updates. Use the repository’s evidence/report-groups.json for the report IDs and drafts/ for the corresponding ticket text.
 
-desk ref DR-BCHR-MV8H
+desk ref DR-5PHQ-MWJP
 
 Pages are written by people. Tables and charts are built from data at render time.
