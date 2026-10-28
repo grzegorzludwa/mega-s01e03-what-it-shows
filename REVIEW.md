@@ -60,17 +60,24 @@ The original ZIP has SHA-256
 - [Parser issue 1](https://github.com/grzegorzludwa/mega-s01e03-what-it-shows/issues/1): 379 reports.
 - [Booking-hint issue 2](https://github.com/grzegorzludwa/mega-s01e03-what-it-shows/issues/2): 33 reports.
 
-## Pending
+## Course acceptance
 
-- The first course submission accepted both tickets, but did not mark the challenge solved.
-- The challenge page then exposed an engineering update: source desk #4471 closed 2026-10-05;
-  parser fixed (`fix(dates): parse dd/mm for eu locales`); hint won't fix (`booking-v3 form retired`).
-- The published signed page records that update through `DeskResolution.svelte` and
-  `src/lib/data/incident-4471-status.json`, separately from the unchanged original export.
-- The student approved the remaining KB pushes and issue updates, including publishing the
-  resolution update, posting the prepared comments, closing parser issue 1 as completed,
-  and closing hint issue 2 as not planned.
-- Both public issues are closed with those reasons; `evidence/issue-status.json` records them.
-- The course requires its issued `ticket`, rather than an author name, in the page's `signature`.
-  The page now carries that exact signature and renders reference `DR-5PHQ-MWJP`.
-- Publish the corrected signature and render, resubmit, and complete the course debrief.
+**Solved.** The course accepted the tickets and signed page at `2026-10-28T23:24:22Z`
+(29 October in Warsaw). The [course debrief](https://hq.mega.dev/challenges/what-it-shows#debrief)
+is saved. No challenge work remains pending.
+
+The first course submission accepted the tickets and exposed an engineering update on the
+challenge page. Source desk #4471 closed on 2026-10-05: the parser was fixed, and the hint was
+marked won't fix because booking-v3 was retired. The page records those separate outcomes
+through `DeskResolution.svelte` and `src/lib/data/incident-4471-status.json` without changing
+the original export. The student approved the remaining KB pushes and issue updates.
+
+Both public issues are closed with the corresponding reasons: parser issue 1 completed,
+hint issue 2 not planned. `evidence/issue-status.json` records those states.
+
+The course rejected one resubmission because an author label was not its issued signature.
+The page now carries the exact course-issued `ticket` in its frontmatter and renders reference
+`DR-5PHQ-MWJP`; the following submission was accepted.
+
+The renderer, verification scripts, ticket drafts, and closure comments remain reusable here.
+The command sequence for creating and closing tickets has not been packaged as a reusable script.
